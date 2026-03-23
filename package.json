@@ -1,0 +1,21 @@
+{
+  "name": "nico-barrera-bot",
+  "version": "1.0.0",
+  "description": "Bot de Discord unificado multi-programa para Nico Barrera Academy",
+  "main": "index.js",
+  "scripts": {
+    "start": "node index.js"
+  },
+  "author": "nicolasbarrera1302",
+  "license": "MIT",
+  "dependencies": {
+    "bottleneck": "^2.19.5",
+    "discord.js": "^14.20.0",
+    "dotenv": "^17.2.3",
+    "express": "^5.1.0",
+    "googleapis": "^105.0.0",
+    "pino": "^9.12.0",
+    "pino-pretty": "^13.1.1",
+    "undici": "^7.16.0"
+  }
+}
