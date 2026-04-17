@@ -7,6 +7,7 @@ const verificacion = require('./modules/verificacion');
 const roles = require('./modules/roles');
 const invites = require('./modules/invites');
 const miembros = require('./modules/miembros');
+const cleanup = require('./modules/cleanup');
 
 // ── Cliente único ────────────────────────────────
 const client = new Client({
@@ -23,6 +24,7 @@ verificacion.setup(client, config);
 roles.setup(client, config);
 invites.setup(client, config);
 miembros.setup(client, config);
+cleanup.setup(client, config);
 
 // ── Bot listo ────────────────────────────────────
 client.once(Events.ClientReady, () => {
