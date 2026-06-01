@@ -8,6 +8,8 @@ const roles = require('./modules/roles');
 const invites = require('./modules/invites');
 const miembros = require('./modules/miembros');
 const cleanup = require('./modules/cleanup');
+const nombres = require('./modules/nombres');
+const sweep = require('./modules/sweep');
 
 // ── Cliente único ────────────────────────────────
 const client = new Client({
@@ -25,6 +27,8 @@ roles.setup(client, config);
 invites.setup(client, config);
 miembros.setup(client, config);
 cleanup.setup(client, config);
+nombres.setup(client, config);
+sweep.setup(client, config);
 
 // ── Bot listo ────────────────────────────────────
 client.once(Events.ClientReady, () => {
