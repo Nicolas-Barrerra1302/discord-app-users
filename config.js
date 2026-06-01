@@ -7,7 +7,7 @@ require('dotenv').config();
 
 const PROGRAMS = {
   programaA: {
-    name: 'Programa A',
+    name: 'Inversionistas Conscientes',
     guildId: process.env.GUILD_ID_A,
     inviteChannelId: process.env.INVITE_CHANNEL_ID_A,
     products: [
@@ -24,6 +24,7 @@ const PROGRAMS = {
     ],
     sheetId: process.env.SHEET_ID_A,
     sheetRange: 'miembros_discord!A2:G',
+    bajasSheetName: 'Bajas',
     webhookN8n: process.env.N8N_WEBHOOK_A,
     appscriptUrl: process.env.APPSCRIPT_URL_A,
     appscriptToken: process.env.APPSCRIPT_TOKEN_A,
@@ -53,6 +54,7 @@ const PROGRAMS = {
     ],
     sheetId: process.env.SHEET_ID_B,
     sheetRange: 'miembros_discord!A2:E',
+    bajasSheetName: 'Bajas',
     webhookN8n: process.env.N8N_WEBHOOK_B,
     appscriptUrl: process.env.APPSCRIPT_URL_B,
     appscriptToken: process.env.APPSCRIPT_TOKEN_B,
