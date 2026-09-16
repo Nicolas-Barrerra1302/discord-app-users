@@ -65,7 +65,7 @@ function fetchWithTimeout(url, options = {}, timeoutMs = FETCH_TIMEOUT_MS) {
 
 async function createOneUseInvite(botToken, channelId) {
   const url = `https://discord.com/api/v10/channels/${channelId}/invites`;
-  const body = { max_uses: 1, max_age: 86400, unique: true, temporary: false };
+  const body = { max_uses: 1, max_age: 604800, unique: true, temporary: false }; // 604800s = 7 días
 
   const maxRetries = 5;
   let attempt = 0;
@@ -167,7 +167,7 @@ function buildInviteEmailHtml(inviteUrl, programa) {
       </a>
 
       <p style="margin:20px 0 0 0;font-size:13px;color:#8a94a3;">
-        Este enlace es <b style="color:#e6f5ff;">de un solo uso</b> y expira en <b style="color:#e6f5ff;">24 horas</b>.
+        Este enlace es <b style="color:#e6f5ff;">de un solo uso</b> y expira en <b style="color:#e6f5ff;">7 días</b>.
       </p>
 
       <p style="margin:8px 0 0 0;font-size:12px;color:#5e6775;">

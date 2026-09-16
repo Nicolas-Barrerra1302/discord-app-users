@@ -14,7 +14,7 @@ const PROGRAMS = {
       process.env.HOTMART_PRODUCT_A1,
       process.env.HOTMART_PRODUCT_A2,
     ].filter(Boolean),
-    roles: ['Activo', '2026-2', 'Iniciador de Mercados'],
+    roles: ['Activo', '2026-3', 'Iniciador de Mercados'],
     // Columnas del Sheet donde están los roles (E=Estado, F=Generación, G=Nivel)
     // Cada entrada mapea 1:1 con el array roles[] para la escritura post-verificación
     roleColumns: [
@@ -134,6 +134,8 @@ Aquí están tus clases. Mira este video rápido de 1 minuto para saber por dón
 ¡Aquí ocurre la magia! Resuelve dudas y conecta con otros Inversionistas Conscientes. Mira cómo unirte:
 
 👉 https://videos.nicobarreraacademy.com/Discord.mp4
+
+🚨🚨 Es importante tener en cuenta que el correo que te llega para ingresar a la comunidad de Discord puede llegar al apartado de spam. 🚨🚨
 
 ¡No pierdas tiempo y empieza desde hoy! 🔥
 
