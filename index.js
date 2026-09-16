@@ -10,6 +10,7 @@ const miembros = require('./modules/miembros');
 const cleanup = require('./modules/cleanup');
 const nombres = require('./modules/nombres');
 const sweep = require('./modules/sweep');
+const whatsapp = require('./modules/whatsapp');
 
 // ── Cliente único ────────────────────────────────
 const client = new Client({
@@ -29,6 +30,7 @@ miembros.setup(client, config);
 cleanup.setup(client, config);
 nombres.setup(client, config);
 sweep.setup(client, config);
+whatsapp.setup(client, config);
 
 // ── Bot listo ────────────────────────────────────
 client.once(Events.ClientReady, () => {
