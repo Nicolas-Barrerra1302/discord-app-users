@@ -115,7 +115,29 @@ const config = {
   // Mensaje único global del tutorial enviado por WhatsApp.
   tutorialMessage:
     process.env.TUTORIAL_MESSAGE ||
-    'Bienvenido a Inversionistas Conscientes, sigue este tutorial para ingresar.',
+    `Hola, Inversionista 👋
+
+¡Bienvenido a la comunidad! Estamos emocionados de que des este paso para llevar tu conciencia y tus finanzas al siguiente nivel. 🚀
+
+Recuerda que tu generación es 2026-3. 📚
+
+Para arrancar con toda, las dos plataformas principales que manejamos son Hotmart y Discord. A continuación, te dejamos unos breves tutoriales para que los revises, puedas acceder a las plataformas y continuar con todo el proceso.
+
+📚 Paso 1: Tu Plataforma (Hotmart)
+
+Aquí están tus clases. Mira este video rápido de 1 minuto para saber por dónde empezar a estudiar hoy:
+
+👉 https://videos.nicobarreraacademy.com/Hotmart.mp4
+
+🤝 Paso 2: La Comunidad (Discord)
+
+¡Aquí ocurre la magia! Resuelve dudas y conecta con otros Inversionistas Conscientes. Mira cómo unirte:
+
+👉 https://videos.nicobarreraacademy.com/Discord.mp4
+
+¡No pierdas tiempo y empieza desde hoy! 🔥
+
+¡Nos vemos adentro! 💪🚀`,
   PROGRAMS,
   getProgramByGuildId,
   getProgramByProductId,
