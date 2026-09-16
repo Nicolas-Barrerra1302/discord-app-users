@@ -5,6 +5,8 @@
 // del bot (invites.js) cae automáticamente al fallback de n8n/Chatwoot.
 // Nunca lanza desde setup(): un fallo aquí no puede tumbar el proceso.
 
+const fs = require('fs');
+const path = require('path');
 const { logger } = require('../utils/logger');
 
 // Cargas tolerantes: si las deps aún no están instaladas, el módulo se
@@ -40,6 +42,24 @@ function isWhatsAppReady() {
 // Estado para el endpoint web GET /wa/qr
 function getQrState() {
   return { ready: isReady, qr: isReady ? null : lastQr };
+}
+
+// Borra los locks de Chromium que quedan cuando el contenedor se mata sin cierre
+// limpio (típico en cada Deploy). Sin esto, con sesión en volumen persistente el
+// siguiente arranque falla con "profile appears to be in use by another Chromium".
+function clearChromiumLocks(sessionPath) {
+  if (!sessionPath) return;
+  const dirs = [sessionPath, path.join(sessionPath, 'session')];
+  const files = ['SingletonLock', 'SingletonCookie', 'SingletonSocket'];
+  for (const dir of dirs) {
+    for (const f of files) {
+      try {
+        fs.rmSync(path.join(dir, f), { force: true });
+      } catch (_) {
+        /* best-effort: si no existe o no se puede borrar, seguimos */
+      }
+    }
+  }
 }
 
 function buildClient(config) {
@@ -105,6 +125,8 @@ async function initialize(config) {
   if (initializing) return;
   initializing = true;
   try {
+    const wa = config.whatsapp || {};
+    clearChromiumLocks(wa.sessionPath || './.wwebjs_auth');
     client = buildClient(config);
     attachHandlers(config);
     await client.initialize();
