@@ -25,6 +25,12 @@ const PROGRAMS = {
     sheetId: process.env.SHEET_ID_A,
     sheetRange: 'miembros_discord!A2:G',
     bajasSheetName: 'Bajas',
+    // Hoja "Compras de Hotmart" (llenada por n8n): A:nombre B:correo C:telefono
+    // D:codigo hp E:producto F:estado G:discord id  H:estado_tutorial (idempotencia del bot)
+    comprasSheetId: process.env.COMPRAS_SHEET_ID_A || process.env.SHEET_ID_A,
+    comprasSheetRange: process.env.COMPRAS_SHEET_RANGE_A || 'Compras de Hotmart!A2:H',
+    // Fallback del tutorial: si WhatsApp falla, el bot hace POST aquí y n8n/Chatwoot envía.
+    tutorialFallbackWebhook: process.env.N8N_TUTORIAL_WEBHOOK_A,
     webhookN8n: process.env.N8N_WEBHOOK_A,
     appscriptUrl: process.env.APPSCRIPT_URL_A,
     appscriptToken: process.env.APPSCRIPT_TOKEN_A,
@@ -55,6 +61,11 @@ const PROGRAMS = {
     sheetId: process.env.SHEET_ID_B,
     sheetRange: 'miembros_discord!A2:E',
     bajasSheetName: 'Bajas',
+    // Hoja "Compras de Hotmart" (llenada por n8n): A:nombre B:correo C:telefono ... H:estado_tutorial
+    comprasSheetId: process.env.COMPRAS_SHEET_ID_B || process.env.SHEET_ID_B,
+    comprasSheetRange: process.env.COMPRAS_SHEET_RANGE_B || 'Compras de Hotmart!A2:H',
+    // Fallback del tutorial: si WhatsApp falla, el bot hace POST aquí y n8n/Chatwoot envía.
+    tutorialFallbackWebhook: process.env.N8N_TUTORIAL_WEBHOOK_B,
     webhookN8n: process.env.N8N_WEBHOOK_B,
     appscriptUrl: process.env.APPSCRIPT_URL_B,
     appscriptToken: process.env.APPSCRIPT_TOKEN_B,
@@ -89,6 +100,22 @@ const config = {
   googleCredentialsPath: process.env.GOOGLE_CREDENTIALS_PATH,
   hottok: process.env.HOTTOK,
   port: parseInt(process.env.PORT, 10) || 3000,
+  // ── WhatsApp (whatsapp-web.js) ──
+  whatsapp: {
+    // Directorio de sesión de LocalAuth. En Docker montar como VOLUMEN para
+    // que la sesión sobreviva a reinicios (si no, re-escaneo de QR cada vez).
+    sessionPath: process.env.WA_SESSION_PATH || '/data/wwebjs_auth',
+    // Token para proteger el endpoint GET /wa/qr.
+    qrToken: process.env.WA_QR_TOKEN,
+    // Ruta al Chromium del sistema (Docker/Alpine). Vacío en local → usa el de Puppeteer.
+    chromiumPath: process.env.WA_CHROMIUM_PATH || process.env.PUPPETEER_EXECUTABLE_PATH || null,
+    // Código de país por defecto para números sin prefijo (Colombia = 57).
+    defaultCountryCode: process.env.WA_DEFAULT_COUNTRY_CODE || '57',
+  },
+  // Mensaje único global del tutorial enviado por WhatsApp.
+  tutorialMessage:
+    process.env.TUTORIAL_MESSAGE ||
+    'Bienvenido a Inversionistas Conscientes, sigue este tutorial para ingresar.',
   PROGRAMS,
   getProgramByGuildId,
   getProgramByProductId,
