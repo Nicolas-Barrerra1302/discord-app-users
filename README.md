@@ -115,6 +115,25 @@ guildMemberAdd → Detecta programa por guildId
 → Si es nuevo: appendRow con username, displayName, tag, userId
 ```
 
+### 5. Compra aprobada → Tutorial por WhatsApp (con fallback a n8n/Chatwoot)
+
+```
+Webhook Hotmart aprobado (invites.js) programa una tarea de tutorial aparte:
+sendTutorialWithFallback():
+  1. WhatsApp listo? (isWhatsAppReady)          — si no → fallback
+  2. Buscar telefono por correo en "Compras de Hotmart" (col B=correo, C=telefono)
+     - col H (estado_tutorial) ya marcada?       — si → se omite (idempotencia)
+     - sin telefono?                             — → fallback
+  3. whatsapp.js sendTutorial(telefono, TUTORIAL_MESSAGE)
+  4. Marcar col H = "WA_OK|<timestamp>"
+  catch (cualquier fallo) → POST a N8N_TUTORIAL_WEBHOOK → Chatwoot envia (flujo antiguo, intacto)
+```
+
+whatsapp-web.js corre dentro del bot (proceso persistente). Sesion con `LocalAuth` en
+`WA_SESSION_PATH` (montar como volumen en Docker). Primer arranque: escanear el QR desde
+`docker logs` (ASCII) o `GET /wa/qr?token=WA_QR_TOKEN`. Si WhatsApp no esta disponible, todo
+cae al fallback de n8n sin intervencion.
+
 ## Variables de entorno
 
 | Variable | Descripcion | Donde obtenerla |
@@ -353,6 +372,8 @@ pm2 monit
 | Pino | ^9.12 | Logging |
 | Bottleneck | ^2.19 | Rate limiting |
 | undici | ^7.16 | HTTP fetch |
+| whatsapp-web.js | ^1.34 | Envio del tutorial por WhatsApp (Puppeteer/Chromium) |
+| qrcode / qrcode-terminal | ^1.5 / ^0.12 | QR de la sesion (endpoint web / logs) |
 | PM2 | - | Process manager (produccion) |
 
 ## Dependencias externas

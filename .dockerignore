@@ -3,3 +3,5 @@ node_modules
 *.log
 .claude
 credentials.json
+.wwebjs_auth
+.wwebjs_cache
