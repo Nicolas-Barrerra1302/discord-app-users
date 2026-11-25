@@ -14,7 +14,7 @@ const PROGRAMS = {
       process.env.HOTMART_PRODUCT_A1,
       process.env.HOTMART_PRODUCT_A2,
     ].filter(Boolean),
-    roles: ['Activo', '2026-3', 'Iniciador de Mercados'],
+    roles: ['Activo', '2026-4', 'Iniciador de Mercados'],
     // Columnas del Sheet donde están los roles (E=Estado, F=Generación, G=Nivel)
     // Cada entrada mapea 1:1 con el array roles[] para la escritura post-verificación
     roleColumns: [
@@ -119,7 +119,7 @@ const config = {
 
 ¡Bienvenido a la comunidad! Estamos emocionados de que des este paso para llevar tu conciencia y tus finanzas al siguiente nivel. 🚀
 
-Recuerda que tu generación es 2026-3. 📚
+Recuerda que tu generación es 2026-4. 📚
 
 Para arrancar con toda, las dos plataformas principales que manejamos son Hotmart y Discord. A continuación, te dejamos unos breves tutoriales para que los revises, puedas acceder a las plataformas y continuar con todo el proceso.
 
